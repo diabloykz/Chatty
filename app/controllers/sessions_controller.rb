@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  before_action :logged_in_redirect, only: [:new, :create]
+
   def new
   end
 
@@ -20,5 +22,14 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     flash[:success] = "Vous êtes bien déconnecté"
     redirect_to login_path
+  end
+
+  private
+
+  def logged_in_redirect
+    if logged_in?
+      flash[:error] = "Vous êtes déjà connecté"
+      redirect_to root_path
+    end
   end
 end
