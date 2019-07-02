@@ -3,5 +3,6 @@
     <div class="summary">
       <em><%= message.user.username %></em>: <%= message.body %>
     </div>
+    <div class="meta">Il y a <%= time_ago_in_words(message.created_at) %></div>
   </div>
 </div>
